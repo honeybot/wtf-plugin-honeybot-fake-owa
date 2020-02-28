@@ -185,6 +185,7 @@ function ecp_default()
     headers["Content-Type"] = "text/html; charset=utf-8"
     headers["request-id"] = "fdd4acfa-70e3-42a6-ba7c-0d0d46c5a807"
     headers["Server"] = "Microsoft-IIS/8.5"
+    headers["Set-Cookie"] = "ASP.NET_SessionId=7dd6fd98-805a-48d6-b049-f0a3e605c8d7; path=/; HttpOnly"
     headers["X-AspNet-Version"] = "4.0.30319"
     headers["X-CalculatedBETarget"] = ngx.var.host
     headers["X-Content-Type-Options"] = "nosniff"
