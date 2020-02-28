@@ -1,5 +1,5 @@
 package = "wtf-plugin-honeybot-fake-owa-data"
-version = "0.1-1"
+version = "0.1-2"
 source = {
    url = "git+https://github.com/honeybot/wtf-plugin-honeybot-fake-owa",
    tag = "0.1"
@@ -11,5 +11,5 @@ description = {
 dependencies = {}
 build = {
    type = "command",
-   build_command = "WTFBASE=/usr/local/share/wtf/data/;PACKAGEPATH=honeybot/fake/sonicwall;test -d $WTFBASE$PACKAGEPATH || mkdir -p $WTFBASE$PACKAGEPATH;cp -R _data/* $WTFBASE$PACKAGEPATH"   
+   build_command = "WTFBASE=/usr/local/share/wtf/data/;PACKAGEPATH=honeybot/fake/owa;test -d $WTFBASE$PACKAGEPATH || mkdir -p $WTFBASE$PACKAGEPATH;cp -R _data/* $WTFBASE$PACKAGEPATH"   
 }
