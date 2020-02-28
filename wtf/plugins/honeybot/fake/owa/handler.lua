@@ -185,7 +185,6 @@ function ecp_default()
     headers["Content-Type"] = "text/html; charset=utf-8"
     headers["request-id"] = "fdd4acfa-70e3-42a6-ba7c-0d0d46c5a807"
     headers["Server"] = "Microsoft-IIS/8.5"
-    headers["Set-Cookie"] = "ASP.NET_SessionId=7dd6fd98-805a-48d6-b049-f0a3e605c8d7; path=/; HttpOnly"
     headers["X-AspNet-Version"] = "4.0.30319"
     headers["X-CalculatedBETarget"] = ngx.var.host
     headers["X-Content-Type-Options"] = "nosniff"
@@ -205,7 +204,34 @@ function ecp_default()
       http404()
     end
   else
-    static(nil, "ecp/default.aspx")
+    local headers = {}
+    
+    headers["Cache-Control"] = "no-cache, no-store"
+    headers["Content-Type"] = "text/html; charset=utf-8"
+    headers["Date"] = ngx.http_time(ngx.time())
+    headers["Expires"] = "-1"
+    headers["Pragma"] = "no-cache"
+    headers["request-id"] = "e5483acd-f3a2-4bb8-bbd6-8484002aa8fd"
+    headers["Server"] = "Microsoft-IIS/8.5"
+    headers["Set-Cookie"] = "ASP.NET_SessionId=7dd6fd98-805a-48d6-b049-f0a3e605c8d7; path=/; HttpOnly"
+    headers["Vary"] = "Accept-Encoding"
+    headers["X-AspNet-Version"] = "4.0.30319"
+    headers["X-CalculatedBETarget"] = ngx.var.host
+    headers["X-Content-Type-Options"] = "nosniff"
+    headers["X-FEServer"] = "MAIL"
+    headers["X-Powered-By"] = "ASP.NET" 
+    headers["X-Frame-Options"] = "SameOrigin"
+    headers["X-UA-Compatible"] = "IE=10"
+    
+    local filename = config["datapath"] .. config["version"] .."/ecp/default.aspx"
+    local template = io.open(filename, "rb")
+    if template ~= nil then
+      local page = template:read "*a"
+      set_headers(headers)
+      send_response(200, page)
+    else
+      http404()
+    end
   end
 end
 
